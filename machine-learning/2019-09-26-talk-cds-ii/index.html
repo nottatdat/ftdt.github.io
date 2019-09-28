@@ -106,9 +106,9 @@
 
 <p><strong>Ngoài lề</strong>: Cũng từ những nghiên cứu về <em>&ldquo;Adversarial Examples&rdquo;</em>, Ian Goodfellow đã trở thành một trong số những người tiên phong, mở ra <em>một hướng nghiên cứu mới</em> trong Machine learning hiện đại, đó chính là <strong><a href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">Generative Adversarial Network</a></strong>.</p></li>
 
-<li><p><strong>Trang 18</strong>: Phần này lấy ý tưởng rất nhiều từ bài viết <strong><a href="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">Neural Networks, Manifolds, and Topology</a></strong> của Christopher Colah. Ảnh minh hoạ cũng được lấy từ bài viết trên.</p>
+<li><p><strong>Trang 18</strong>: Ảnh và ý tưởng cho phần này được lấy từ bài viết <strong><a href="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">Neural Networks, Manifolds, and Topology</a></strong> của Christopher Colah.</p>
 
-<p>Để hiểu được vì sao <em>Deep learning</em> lại dễ <em>&ldquo;overfitting&rdquo;</em> như vậy, ta phải hiểu được việc huấn luyện một mạng neuron diễn ra như thế nào. Dưới đây là hai ví dụ đơn giản, giúp ta nhìn thấy (một phần) trong bức tranh tổng thể của việc huấn luyện một mạng neuron.</p>
+<p>Để hiểu được vì sao <em>Deep learning</em> dễ <em>&ldquo;overfitting&rdquo;</em> như vậy, ta phải hiểu được việc huấn luyện một mạng neuron diễn ra như thế nào. Dưới đây là hai ví dụ đơn giản, giúp ta nhìn thấy (một phần) trong bức tranh tổng thể của việc huấn luyện một mạng neuron.</p>
 
 <p><img src="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/img/spiral.1-2.2-2-2-2-2-2.gif" style="width:350px;"/> <img src="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/img/topology_1D-2D_train.gif" style="width:350px;"/></p>
 
@@ -118,7 +118,7 @@
 
 <p>Tuy nhiên, vấn đề cũng đến từ đây: Việc sử dụng một layer cuối <em>khá đơn giản</em> như <em>logistic</em> hay <em>softmax</em>, dẫn đến việc <strong>rất dễ thay đổi kết quả của mô hình</strong>, nếu như ta có thể <em>chỉnh sửa được dữ liệu đầu vào</em>. Tức là với các điểm dự đoán nằm gần <em>decision boundary</em>, ta sẽ có cách thay đổi dữ liệu đầu vào, sao cho về mặt ý nghĩa thì bản chất của dữ liệu không thay đổi, như trong hình chú gấu trúc, mà lại có thể làm &ldquo;xê dịch&rdquo; dự đoán mới sang một <em>decision region</em> khác, hoặc <em>&ldquo;cực đoan&rdquo;</em> hơn, như trong bài báo mới đây, chỉ cần <em>thay đổi 1 pixel duy nhất</em>.</p>
 
-<p>Vậy tại sao ta không dùng một hàm số phức tạp/có ý nghĩa hơn cho lớp cuối của mô hình? Lý do mà các hàm như <em>logistic</em> hay <em>softmax</em> được chọn là: Khi áp dụng các phương pháp tối ưu cho mạng neuron, với lượng dữ liệu lớn, một chiến thuật rất hay được sử dụng là huấn luyện theo từng batch nhỏ, và việc tính sai số đối với các hàm số kể trên nhìn chung là đơn giản. Như đề xuất của Colah, một ý tưởng tự nhiên là: Thay vì sử dụng các hàm số kể trên, ta có thể sử dụng phương pháp <strong>k-nearest neighbors</strong> (<em>kNN</em>) ở lớp cuối cùng, với hai hướng như sau:</p>
+<p>Vậy tại sao ta không dùng một hàm số phức tạp/<em>&ldquo;có ý nghĩa&rdquo;</em> hơn cho lớp cuối của mô hình? Lý do các hàm <em>logistic</em> hay <em>softmax</em> được chọn là: Khi áp dụng các phương pháp tối ưu cho mạng neuron, với lượng dữ liệu lớn, một chiến thuật hay được sử dụng là huấn luyện theo từng batch nhỏ, và việc tính sai số đối với các hàm số kể trên nhìn chung là đơn giản. Như đề xuất của Colah, một ý tưởng tự nhiên là: Thay vì sử dụng các hàm số kể trên, ta có thể sử dụng phương pháp <strong>k-nearest neighbors</strong> (<em>kNN</em>) ở lớp cuối cùng, với hai hướng như sau:</p>
 
 <ul>
 <li><p><strong>Sử dụng ở <em>&ldquo;test time&rdquo;</em></strong>: Nghĩa là vẫn huấn luyện mạng neuron bằng layer cuối là các hàm <em>logistic</em> và <em>softmax</em>, <strong>sử dụng toàn bộ representation học được</strong> cho đến trước lớp cuối cùng rồi <strong>đưa ra dự đoán bằng kNN</strong>. Cách này nhìn chung có làm giảm sai số của mô hình thêm 0.1-0.2% ở một số bộ dữ liệu, nhưng vẫn không quá đáng kể.</p></li>
