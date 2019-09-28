@@ -3,39 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://tatd.at/problem-solving/2018-06-10-random/</loc>
+    <loc>https://tatd.at/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tatd.at/machine-learning/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tatd.at/machine-learning/2019-09-26-talk-cds-ii/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tatd.at/machine-learning/2019-09-25-talk-cds-i/</loc>
+    <lastmod>2019-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tatd.at/problem-solving/</loc>
     <lastmod>2018-06-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tatd.at/problem-solving/2018-05-13-anagram/</loc>
+    <loc>https://tatd.at/problem-solving/2018-06-10-random/</loc>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tatd.at/problem-solving/2018-05-13-anagram/</loc>
     <lastmod>2018-05-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tatd.at/problem-solving/2018-04-11-go-gopher/</loc>
+    <loc>https://tatd.at/problem-solving/2018-04-11-go-gopher/</loc>
     <lastmod>2018-04-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tatd.at/categories/</loc>
-    <priority>0</priority>
+    <loc>https://tatd.at/categories/</loc>
   </url>
   
   <url>
-    <loc>http://tatd.at/</loc>
-    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tatd.at/problem-solving/</loc>
-    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://tatd.at/tags/</loc>
-    <priority>0</priority>
+    <loc>https://tatd.at/tags/</loc>
   </url>
   
 </urlset>

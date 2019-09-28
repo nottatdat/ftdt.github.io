@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine-learnings on dat</title>
+    <link>https://tatd.at/machine-learning/</link>
+    <description>Recent content in Machine-learnings on dat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tatd.at/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>talk: competitive data science (ii)</title>
+      <link>https://tatd.at/machine-learning/2019-09-26-talk-cds-ii/</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tatd.at/machine-learning/2019-09-26-talk-cds-ii/</guid>
+      <description>Đây là nội dung bài talk của mình trong buổi meetup Trà đá 2^2, 25/08/2018, slide.
+Xem phần trước tại đây.
+ Trang 14: Cuối cùng thì một Deep Neural Networks (DNN) là gì?
+Về mặt bản chất toán học thì các (Feed-forward) DNN nói chung thực ra rất &amp;ldquo;đơn giản&amp;rdquo;: Chúng là hàm hợp của một số các hàm &amp;ldquo;cơ bản&amp;rdquo; khác &amp;ldquo;xếp chồng&amp;rdquo; lên nhau. Các hàm đó có thể đơn giản như hàm identity $ f(x) = x $, hàm linear $ f(x) = ax + b $, hàm ReLU $ f(x) = max(x, 0) $, hoặc phức tạp một chút như hàm $ tanh(x) $, hay hàm sigmoid $ f(x) = \frac{e^x}{1 + e^x} $.</description>
+    </item>
+    
+    <item>
+      <title>talk: competitive data science (i)</title>
+      <link>https://tatd.at/machine-learning/2019-09-25-talk-cds-i/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tatd.at/machine-learning/2019-09-25-talk-cds-i/</guid>
+      <description>Đây là nội dung bài talk của mình trong buổi meetup Trà đá 2^2, 25/08/2018, slide.
+ Trang 1: (Giới thiệu bản thân.)
+ Trang 2: Phần lớn mọi người hẳn cũng khá quen thuộc với các sân chơi lập trình thi đấu, &amp;ldquo;competitive programming&amp;rdquo;, như Codeforces, IOI, hay ACM ICPC. &amp;ldquo;Competitive data science&amp;rdquo; (CDS) là một sân chơi có dạng như sau:
+ Người chơi sẽ được cung cấp một bộ dữ liệu, đa phần là được lấy từ thực tế, bao gồm Training set - là các dữ liệu có nhãn, và Test set - là các dữ liệu không có nhãn.</description>
+    </item>
+    
+  </channel>
+</rss>

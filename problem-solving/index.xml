@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Problem-solvings on dat</title>
-    <link>http://tatd.at/problem-solving/</link>
+    <link>https://tatd.at/problem-solving/</link>
     <description>Recent content in Problem-solvings on dat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://tatd.at/problem-solving/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tatd.at/problem-solving/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>random()</title>
-      <link>http://tatd.at/problem-solving/2018-06-10-random/</link>
+      <link>https://tatd.at/problem-solving/2018-06-10-random/</link>
       <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://tatd.at/problem-solving/2018-06-10-random/</guid>
+      <guid>https://tatd.at/problem-solving/2018-06-10-random/</guid>
       <description>rand5() Developer An wants to get a random integer from the range of $[1, 5]$. Here comes one of the most common mistakes in the history of programming:
 random_number = random() % 5 + 1;  The problem is that: In most programming languages (such as C), the random() function will return a random number from the range $ [0, RAND\_MAX) $. Unless 5 divides RAND_MAX, the outcomes are not equally distributed.</description>
     </item>
     
     <item>
       <title>Anagram và đa thức đối xứng</title>
-      <link>http://tatd.at/problem-solving/2018-05-13-anagram/</link>
+      <link>https://tatd.at/problem-solving/2018-05-13-anagram/</link>
       <pubDate>Sun, 13 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://tatd.at/problem-solving/2018-05-13-anagram/</guid>
+      <guid>https://tatd.at/problem-solving/2018-05-13-anagram/</guid>
       <description>Bài toán: Cho hai chuỗi $ s $ và $ t $, làm thế nào để kiếm tra được chuỗi $ t $ có phải là anagram của chuỗi $ s $ hay không?
  Đơn giản nhất là đếm số lần xuất hiện của từng ký tự trong mỗi chuỗi, rồi kiểm tra xem chúng có khớp nhau không.
 def correct_anagram(s, t): if len(s) != len(t): return False count_s = [0] * 256 # there are 256 ASCII characters count_t = [0] * 256 for s_i, t_i in zip(s, t): count_s[ord(s_i)] += 1 count_t[ord(t_i)] += 1 for i in range(256): if(count_s[i] !</description>
@@ -34,10 +34,10 @@ def correct_anagram(s, t): if len(s) != len(t): return False count_s = [0] * 256
     
     <item>
       <title>Go, Gopher!</title>
-      <link>http://tatd.at/problem-solving/2018-04-11-go-gopher/</link>
+      <link>https://tatd.at/problem-solving/2018-04-11-go-gopher/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://tatd.at/problem-solving/2018-04-11-go-gopher/</guid>
+      <guid>https://tatd.at/problem-solving/2018-04-11-go-gopher/</guid>
       <description>Go, Gopher! là một bài toán không khó, nhưng khá thú vị ở mặt problem setting. Nội dung của nó như sau:
  Cho một bảng 2D có kích thước 1000 x 1000 và hai số tự nhiên $ A $, $ m $ cho trước.
  Các ô trên bảng có hai trạng thái là bật và tắt. Ban đầu, tất cả các ô đều đang ở trạng thái tắt.</description>

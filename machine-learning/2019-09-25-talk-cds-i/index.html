@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>talk: competitive data science (i) | dat</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Inconsolata" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+<div class="article-meta">
+<h1><span class="title">talk: competitive data science (i)</span></h1>
+<h2 class="date">2019/09/25</h2>
+</div>
+
+<main>
+<p>Đây là nội dung bài talk của mình trong buổi meetup Trà đá 2^2, 25/08/2018, <a href="https://docs.google.com/presentation/d/1-g6w62GC8ikhBpVFwkLJaQ1A1yaDiZ55Ig-nI8nfzVI/">slide</a>.</p>
+
+<ul>
+<li><p><strong>Trang 1</strong>: (Giới thiệu bản thân.)</p></li>
+
+<li><p><strong>Trang 2</strong>: Phần lớn mọi người hẳn cũng khá quen thuộc với các sân chơi lập trình thi đấu, <strong>&ldquo;competitive programming&rdquo;</strong>, như Codeforces, IOI, hay ACM ICPC. <strong>&ldquo;Competitive data science&rdquo;</strong> (CDS) là một sân chơi có dạng như sau:</p>
+
+<ul>
+<li><p>Người chơi sẽ được cung cấp một bộ dữ liệu, đa phần là được lấy từ thực tế, bao gồm <strong>Training set</strong> - là các dữ liệu có nhãn, và <strong>Test set</strong> - là các dữ liệu không có nhãn.</p></li>
+
+<li><p>Nhiệm vụ của người chơi (thường) là cung cấp một dự đoán cho nhãn của <strong>Test set</strong>.</p></li>
+
+<li><p>Thứ hạng của những người tham dự sẽ được quyết định bằng &ldquo;độ tốt&rdquo; của dự đoán đó, dựa trên một metric, như <em>độ chính xác</em> (accuracy), hay <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic">AUC của đường cong ROC</a>, etc.</p></li>
+
+<li><p>Không như lập trình thi đấu, nơi mà phần lớn các bài toán đều có lời giải &ldquo;rõ ràng&rdquo;, CDS (gần như) không có &ldquo;lời giải rõ ràng&rdquo;.</p></li>
+</ul></li>
+
+<li><p><strong>Trang 3 - 4</strong>: Ở một số platform như <a href="https://kaggle.com/">Kaggle</a>, kết quả được quyết định như sau:</p>
+
+<ol>
+<li><p>Kaggle chia <strong>Test set</strong> thành hai phần, <em>Public Test set</em> và <em>Private Test set</em>.</p></li>
+
+<li><p>Trong quá trình thi, bạn sẽ được biết &ldquo;độ tốt&rdquo; của mô hình, dựa vào một metric, qua việc so sánh nhãn được dự đoán với nhãn thật sự của <em>Public test set</em>.</p></li>
+
+<li><p>Kết quả của cuộc thi sẽ được tính trên <em>Private Test set</em>, được công bố sau khi phần nộp bài kết thúc.</p></li>
+</ol>
+
+<p>Hiển nhiên, việc tồn tại một quá trình feedback độ tốt của dự đoán trên tập <em>Public Test set</em> sau các lần nộp dự đoán sẽ dẫn đến việc để &ldquo;lộ&rdquo; thông tin về tập này. <em>Một bài toán thú vị là</em>: Làm sao để biết được phần nào trong <strong>Test set</strong> thuộc về <em>Public</em>, phần nào thuộc về <em>Private</em>? Thông thường, một cuộc thi trên Kaggle sẽ diễn ra trong khoảng 1 tháng, và số lần được nộp tối đa mỗi ngày là khoảng 5 lần, với bộ <strong>Test set</strong> có độ lớn trung bình khoảng vài trăm ngàn datapoints.</p>
+
+<p><strong>Claim</strong> (with detailed analysis <em>coming soon™</em>): Trong &ldquo;một số trường hợp&rdquo;, việc được biết mô hình của mình có độ tốt như thế nào trên phần <em>Public test set</em>, một thí sinh, sau một số &ldquo;ít&rdquo; lần nộp dự đoán (ít hơn giới hạn của kỳ thi):</p>
+
+<ol>
+<li><p>Có thể biết được nhãn chính xác của tập <em>Public test set</em></p></li>
+
+<li><p>Có thể biết được dữ liệu nào nằm trên tập <em>Public</em>, dữ liệu nào nằm trên tập <em>Private</em></p></li>
+
+<li><p>Có thể có được một bộ <em>Augmented training set</em>, bao gồm &ldquo;actual&rdquo; <strong>Training set</strong> và <em>Public Test set</em> và nhãn mới có được của tập này</p></li>
+</ol>
+
+<p>Với các cuộc thi có độ cạnh tranh, việc thí sinh đoán biết được nhãn của <em>Public test set</em> để có thêm training data là một ưu thế không nhỏ, và lợi dụng ưu thế này trực tiếp sẽ làm mất đi tính công bằng của kỳ thi. Về sau này, các cuộc thi trên Kaggle thường đi theo các hướng như sau:</p>
+
+<ol>
+<li><p>Hoặc là dùng &ldquo;closed&rdquo; <strong>Test set</strong> và buộc phải nộp chương trình: thí sinh được access <strong>Training set</strong>, nhưng phải nộp chương trình cho mô hình, Kaggle dùng chương trình chạy mô hình và trả về kết quả</p></li>
+
+<li><p>Hoặc là sử dụng các metrics phức tạp: việc lộ thông tin thường đến từ các một lớp các metrics đơn giản như accuaracy. Tuy nhiên, do vẫn có một quá trình feedback nên vẫn khó tránh khỏi việc bị lộ thông tin.</p></li>
+</ol></li>
+
+<li><p><strong>Trang 5 - 6</strong>: Thường thì các kỳ thi trên Kaggle sẽ được chia một cách &ldquo;thô thiển&rdquo; thành hai dạng: Dạng có nhiều dữ liệu và dạng có ít dữ liệu:</p>
+
+<ul>
+<li><p>Dạng có ít dữ liệu thì đòi hỏi mình tìm hiểu về dữ liệu kỹ hơn, để có thể nghĩ ra các &ldquo;feature&rdquo; tốt hơn.</p>
+
+<p>Các <a href="http://blog.kaggle.com/2017/12/28/mercedez-benz-greener-masking-first-place/">mô</a> <a href="http://blog.kaggle.com/2017/09/21/instacart-market-basket-analysis-winners-interview-2nd-place-kazuki-onodera/">hình</a> <a href="http://blog.kaggle.com/2017/05/11/two-sigma-financial-modeling-code-competition-5th-place-winners-interview-team-best-fitting-bestfitting-zero-circlecircle/">chiến</a> <a href="http://blog.kaggle.com/2017/03/17/outbrain-click-prediction-competition-winners-interview-2nd-place-team-brain-afk-darragh-marios-mathias-alexey/">thắng</a> trong các kỳ thi như thế này thường thuộc dạng <em>Ensemble</em> hoặc <em>Boosting</em>, là các họ mô hình được xây dựng trên nhiều mô hình nhỏ/tinh giản hơn, <em>với các &ldquo;features&rdquo; được &ldquo;handcraft&rdquo; kỹ lưỡng</em>.</p></li>
+
+<li><p>Dạng có nhiều dữ liệu thì dĩ nhiên là đòi hỏi khả năng tính toán nhiều hơn.</p>
+
+<p><a href="http://blog.kaggle.com/2017/12/22/carvana-image-masking-first-place-interview/">Một</a> <a href="http://blog.kaggle.com/2017/10/17/planet-understanding-the-amazon-from-space-1st-place-winners-interview/">chiến</a> <a href="http://blog.kaggle.com/2017/08/22/intel-mobileodt-cervical-cancer-screening-competition-1st-place-winners-interview-team-towards-empirically-stable-training/">thuật</a> hay được sử dụng cho các kỳ thi <em>Computer Vision</em>, và bây giờ là <em>Natural Language Processing</em>, là sử dụng các mô hình đã được rèn luyện sẵn (<em>pre-trained models</em>), rồi thay đổi một chút dựa vào dữ liệu của cuộc thi (<em>fine-tune</em>).</p></li>
+</ul></li>
+
+<li><p><strong>Trang 7</strong>: Bản thân việc tham dự các kỳ thi như thế này cũng là <em>một bài toán tối ưu</em> với mình.</p>
+
+<p><strong>Mục tiêu</strong>: làm sao để có được kết quả càng cao càng tốt (hiển nhiên rồi).</p>
+
+<p><strong>Ràng buộc</strong>:</p>
+
+<ol>
+<li><p>mình <em>không có nhiều thời gian</em> (không hợp với các cuộc thi ít dữ liệu, cần nhiều thời gian tìm hiểu để &ldquo;feature engineering&rdquo;)</p></li>
+
+<li><p>mình <em>không có máy móc với khả năng tính toán cao</em> (lúc đấy mình chỉ có Macbook 2013, không có GPU)</p></li>
+</ol></li>
+
+<li><p><strong>Trang 8</strong>: Cuối cùng cũng có một kỳ thi như vậy, đến từ <a href="numer.ai">numer.ai</a>.</p>
+
+<p>Đây là một quỹ đầu tư, đến từ một đồng sáng lập của Renaissance Technologies (RenTec). Trong giới tài chính, RenTec là một huyền thoại sống và cũng rất &ldquo;huyền bí&rdquo;. Nói về RenTec thì không hết chuyện để kể. Người sáng lập RenTec làm <a href="https://en.wikipedia.org/wiki/Jim_Simons_(mathematician)">Vật lý lý thuyết</a>, <a href="https://www.ted.com/talks/jim_simons_a_rare_interview_with_the_mathematician_who_cracked_wall_street">bị chính phủ đuổi việc</a>, về mở một quỹ đầu tư chỉ tuyển toàn dân Toán và Lý, và <a href="https://www.bloomberg.com/news/articles/2019-03-07/jim-simons-reveals-clues-to-medallion-fund-s-long-unrivaled-run">vô địch thiên hạ</a>.</p>
+
+<p><a href="numer.ai">numer.ai</a> nhìn thấy một khoảng cách lớn trong việc ứng dụng Machine learning vào tài chính, đó là dữ liệu. Phần lớn sự phát triển của Machine learning trong một thời gian rất ngắn gần đây dựa vào <strong>tính &ldquo;mở&rdquo; của cộng đồng</strong>:</p>
+
+<ol>
+<li><p>các bộ dữ liệu mở (MNIST, ImageNet, etc.)</p></li>
+
+<li><p>các khoá học miễn phí trực tuyến (Coursera, edX, Stanford Lagunita, etc.)</p></li>
+
+<li><p>các quyển sách được tác giả mở trên internet cho mọi người đều có thể truy cập được (The Elements of Statistical learning, Deep learning, etc.)</p></li>
+</ol>
+
+<p>Trong ngành tài chính thì dữ liệu phải mua, và dữ liệu có chất lượng rất đắt. <a href="numer.ai">numer.ai</a> cho rằng chính điều này đã kéo lùi việc có được đột phá trong việc ứng dụng Machine learning vào ngành.</p>
+
+<p>Họ tổ chức một cuộc thi hằng tuần bằng dữ liệu của họ. Điều thú vị là: <strong>Đây không phải là dạng dữ liệu tường minh</strong>, mà đã được <em>&ldquo;mã hoá&rdquo;</em>, tức là nếu chỉ nhìn vào dữ liệu thì bạn không biết được ý nghĩa của nó là gì: Các cột đã được chuyển hoá, sao cho phân bố cuối cùng trong từng cột dạng <em>Uniform(0, 1)</em>.</p>
+
+<p><strong>Claim của <a href="numer.ai">numer.ai</a></strong>: Việc mã hoá như vậy một mặt <strong>bảo vệ được dữ liệu</strong> của họ, những vẫn có thể <strong>ứng dụng các mô hình Machine learning trên đó</strong> (mình khá hoài nghi về cái claim này).</p></li>
+
+<li><p><strong>Trang 9</strong>:</p>
+
+<p>Một điểm hay với mình là do đây là cuộc thi theo tuần, nên thời gian để người chơi tập trung cho cuộc thi cũng không cần phải là quá nhiều, và cơ cấu giải thưởng cũng khá là &ldquo;thoáng&rdquo;: Top 100 người có thành tích tốt trong tuần sẽ được thưởng, với các mức thưởng khác nhau, tuỳ thuộc vào thứ hạng.</p>
+
+<p><strong>Claim của <a href="numer.ai">numer.ai</a></strong>: Họ <strong>không cần mô hình</strong>, họ <strong>chỉ cần kết quả của mô hình</strong> để có thể có lợi nhuận trên thị trường. Do vậy, người chơi <strong>chỉ phải nộp dự đoán của nhãn</strong> cho <strong>Test set</strong>.</p>
+
+<p>Cũng nói thêm là với cơ cấu giải thưởng khá rộng và họ lại không đòi hỏi chương trình của mô hình, một người có thể <em>&ldquo;clone&rdquo;</em> nhiều tài khoản khác nhau để nộp nhiều lần cho cùng một dự đoán, cùng sinh ra từ một mô hình tốt, để có thể giành được nhiều giải thưởng hơn. Điều này cũng dẫn đến sự không công bằng. Chính vì lẽ đó nên <a href="numer.ai">numer.ai</a> sử dụng metric quan tâm đến sự &ldquo;đa dạng&rdquo; của mô hình: Một lần nộp A xuất hiện sau lần nộp B, nếu như khá &ldquo;tương đồng&rdquo; với lần nộp B, thì thứ hạng của lần nộp A sẽ thấp hơn lần nộp B, nếu như các yếu tố khác là như nhau.</p>
+
+<p>Bản thân mình nghĩ việc <a href="numer.ai">numer.ai</a> khuyến khích việc người chơi sử dụng đa dạng các mô hình, một mặt vừa đảm bảo tính công bằng cho cuộc thi, mặt khác, quan trọng hơn, liên quan đến bài toán dưới đây.</p>
+
+<blockquote>
+<p>Câu hỏi phỏng vấn: Vì sao việc sử dụng các mô hình <em>khác nhau về bản chất</em> (<strong>diversity</strong>) khi ensemble lại có thể <em>giảm bias và giảm error</em> cho mô hình cuối cùng?</p>
+</blockquote></li>
+
+<li><p><strong>Trang 12</strong>:</p>
+
+<p>Điều tiên quyết ở kỳ thi này là mô hình phải <strong>được huấn luyện đủ nhanh</strong>, và ít nhất là trong một tuần phải đưa ra được vài lần dự đoán.</p>
+
+<p>Mô hình cũng phải có tính khái quát cao, do trong thực tế cuộc thi thì phân bố trên <strong>Training set</strong> có vẻ khá &ldquo;khác&rdquo; với <strong>Test set</strong>. Đây cũng là một tình huống thường gặp trong thực tế.</p>
+
+<blockquote>
+<p>Câu hỏi phỏng vấn: Nếu <strong>Training set</strong> có phân bố khác xa <strong>Test set</strong>, dẫn đến việc các phương pháp validation truyền thống như <em><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#k-fold_cross-validation">k-fold cross validation</a></em> không hiệu quả, hướng giải quyết của bạn là gì?</p>
+</blockquote>
+
+<ul>
+<li><p>Cũng bởi thế, các phương pháp &ldquo;feature engineering&rdquo; mình áp dụng trong cuộc thi này khá phổ quát, như <a href="https://lvdmaaten.github.io/tsne/">t-sne</a>, <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a>, etc. Với thực tế là dữ liệu đã được làm nhiễu/áp một lớp mã hoá, cũng &ldquo;khó&rdquo; có cách có được một bộ &ldquo;handcrafted features&rdquo; đủ tốt.</p>
+
+<p>Tuy nhiên, vẫn có những người chơi khác, nếu đúng như họ claim, rằng từ dữ liệu mã hoá thế này, vẫn có thể map nó với dữ liệu thực tế trên thị trường chứng khoán. Mình không có dữ liệu từ thị trường để kiểm tra <code>¯\_(ツ)_/¯</code></p></li>
+</ul>
+
+<p>Chiến thuật của mình là <em>sử dụng nhiều mô hình khác nhau</em>, rồi <em>ensemble chúng</em> để có một mô hình tốt hơn.</p>
+
+<p>Nhưng nếu chỉ nói về xgboost và việc chạy t-sne parallel thế nào trên CPU thì hơi.. <em>chán</em>, vì trên các bài viết của những người chiến thắng trên Kaggle đã bàn về nó rất nhiều rồi. Sau đây, mình sẽ bàn về một trong số những mô hình cho mình kết quả tốt nhất trong kỳ thi đó, và đã kiếm về cho mình một món tiền X chữ số (shameless self-promotion).</p></li>
+
+<li><p><strong>Trang 13</strong>: Let&rsquo;s talk Deep learning!</p></li>
+</ul>
+
+<p><a href="https://tatd.at/machine-learning/2019-09-26-talk-cds-ii/">Còn tiếp!</a></p>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+  
+  <hr/>
+  &copy; <a href="http://tatd.at">dat</a> 2018-2019 | <a href="https://github.com/tataudat">Github</a> | <a href="https://www.linkedin.com/in/trantatdat/">Linkedin</a>
+  
+  </footer>
+  </body>
+</html>
+
