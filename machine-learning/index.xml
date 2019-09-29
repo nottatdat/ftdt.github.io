@@ -30,7 +30,6 @@ Về mặt bản chất toán học thì các (Feed-forward) DNN nói chung th�
       
       <guid>https://tatd.at/machine-learning/2019-09-25-talk-cds-i/</guid>
       <description>Đây là nội dung bài talk của mình trong buổi meetup Trà đá 2^2, 25/08/2018, slide.
-Trang 1: (Giới thiệu bản thân.)
 Trang 2: Phần lớn mọi người hẳn cũng khá quen thuộc với các sân chơi lập trình thi đấu, &amp;ldquo;competitive programming&amp;rdquo;, như Codeforces, IOI, hay ACM ICPC. &amp;ldquo;Competitive data science&amp;rdquo; (CDS) là một sân chơi có dạng như sau:
  Người chơi sẽ được cung cấp một bộ dữ liệu, đa phần là được lấy từ thực tế, bao gồm Training set - là các dữ liệu có nhãn, và Test set - là các dữ liệu không có nhãn.</description>
     </item>
