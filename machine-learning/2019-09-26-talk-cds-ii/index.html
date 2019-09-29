@@ -29,8 +29,9 @@
 
 <p>Xem phần trước tại <a href="https://tatd.at/machine-learning/2019-09-25-talk-cds-i/">đây</a>.</p>
 
-<ul>
-<li><p><strong>Trang 14</strong>: Cuối cùng thì một <strong>Deep Neural Networks</strong> (DNN) là gì?</p>
+<hr />
+
+<p><strong>Trang 14</strong>: Cuối cùng thì một <strong>Deep Neural Networks</strong> (DNN) là gì?</p>
 
 <p>Về mặt bản chất toán học thì các (Feed-forward) DNN nói chung thực ra rất <em>&ldquo;đơn giản&rdquo;</em>: Chúng là hàm hợp của một số các hàm <em>&ldquo;cơ bản&rdquo;</em> khác <em>&ldquo;xếp chồng&rdquo;</em> lên nhau. Các hàm đó có thể đơn giản như hàm <strong>identity</strong> <code>$ f(x) = x $</code>, hàm <strong>linear</strong> <code>$ f(x) = ax + b $</code>, hàm <strong>ReLU</strong> <code>$ f(x) = max(x, 0) $</code>, hoặc phức tạp một chút như hàm <strong><code>$ tanh(x) $</code></strong>, hay hàm <strong><a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid</a></strong> <code>$ f(x) = \frac{e^x}{1 + e^x} $</code>. Tuy từng hàm, từng neuron, từng layer là <em>&ldquo;đơn giản&rdquo;</em>, nhưng khi kết hợp lại với nhau thì lại rất <em>&ldquo;hữu hiệu&rdquo;</em>, chính là do định lý dưới đây:</p>
 
@@ -40,9 +41,11 @@
 
 <p>Ý nghĩa của định lý này là: Với một hàm liên tục trên tập <em>compact</em> cho trước, sẽ tồn tại một DNN với chỉ một lớp, có thể xấp xỉ được hàm này, bất kể hàm cho trước đó phức tạp như thế nào. Nên nhớ rằng đây chỉ là <em>existence/non-constructive theorem</em>, nghĩa là <strong>ta biết được rằng nó tồn tại</strong>, nhưng định lý <strong>không chỉ ra cách xây dựng nó như thế nào</strong>. Một số kết quả cải tiến hơn cũng <a href="https://arxiv.org/abs/1708.02691"><em>chứng minh được rằng</em></a>: Với mọi hàm số thực <code>$ n $</code> chiều liên tục trên tập <em>compact</em>, luôn tồn tại một DNN có một lớp, với <code>$ n + 3 $</code> ReLU nodes/neurons, có thể xấp xỉ được hàm đã cho.</p>
 
-<p>Tất cả chỉ là.. lý thuyết. Việc tồn tại một DNN như thế <strong>không đảm bảo rằng ta có thể train được</strong> một DNN có thể <em>&ldquo;hội tụ&rdquo;</em> về DNN tối ưu đó. Các kết quả thực nghiệm khuyến khích việc <strong>sử dụng các network nhiều lớp</strong>, thậm chí số lớp có thể lên đến hàng ngàn. <em><a href="https://i.redd.it/n9fgba8b0qr01.png">&ldquo;Stack more layers&rdquo;</a></em> vì thế cũng trở thành meme trong ngành.</p></li>
+<p>Tất cả chỉ là.. lý thuyết. Việc tồn tại một DNN như thế <strong>không đảm bảo rằng ta có thể train được</strong> một DNN có thể <em>&ldquo;hội tụ&rdquo;</em> về DNN tối ưu đó. Các kết quả thực nghiệm khuyến khích việc <strong>sử dụng các network nhiều lớp</strong>, thậm chí số lớp có thể lên đến hàng ngàn. <em><a href="https://i.redd.it/n9fgba8b0qr01.png">&ldquo;Stack more layers&rdquo;</a></em> vì thế cũng trở thành meme trong ngành.</p>
 
-<li><p><strong>Trang 15</strong>: Tóm lại thì DNN, mà nói rộng ra hơn là <em>Deep learning</em>, là một công cụ rất mạnh và hữu hiệu để xấp xỉ những hàm số phức tạp. <em>Hàm số</em> ở đây nói theo nghĩa phổ quát, như:</p>
+<hr />
+
+<p><strong>Trang 15</strong>: Tóm lại thì DNN, mà nói rộng ra hơn là <em>Deep learning</em>, là một công cụ rất mạnh và hữu hiệu để xấp xỉ những hàm số phức tạp. <em>Hàm số</em> ở đây nói theo nghĩa phổ quát, như:</p>
 
 <ul>
 <li><p><em>Dữ liệu đầu vào</em> là hình ảnh và <em>đầu ra</em> là 1 hoặc 0, lần lượt chỉ việc trong ảnh có con chó hay con mèo, là một <em>hàm số</em>.</p></li>
@@ -66,8 +69,7 @@
 
 <p>Các lỗi này thuộc dạng rất <em>&ldquo;silly&rdquo;</em> của những người mới bắt đầu học. Do phần lớn các mô hình <em>Machine learning cổ điển</em> thường yêu cầu một sự hiểu biết nhất định vào dữ liệu mà mình có, nên việc <em>&ldquo;overfitting&rdquo;</em> trong <em>Machine learning cổ điển</em> nhìn chung thường <em>&ldquo;ít&rdquo;</em> hơn trong <em>Deep learning</em>.</p>
 
-<p>Trong <em>Deep learning</em> thì <em>&ldquo;overfitting&rdquo;</em> là hiện tượng chung, là thứ gần như không thể tránh khỏi khi làm việc với <em>Feed-forward DNN</em> cũng như các dạng nâng cao khác của nó như <em>Convolutional Neural Network</em> (CNN) hay <em>Recurrent Neural Network</em> (RNN). Việc có <em>&ldquo;overfitting&rdquo;</em> trong mô hình <em>Deep learning</em> không đến từ sự thiếu hiểu biết của người làm mô hình, mà gần như thuộc về bản chất của mô hình.</p></li>
-</ul>
+<p>Trong <em>Deep learning</em> thì <em>&ldquo;overfitting&rdquo;</em> là hiện tượng chung, là thứ gần như không thể tránh khỏi khi làm việc với <em>Feed-forward DNN</em> cũng như các dạng nâng cao khác của nó như <em>Convolutional Neural Network</em> (CNN) hay <em>Recurrent Neural Network</em> (RNN). Việc có <em>&ldquo;overfitting&rdquo;</em> trong mô hình <em>Deep learning</em> không đến từ sự thiếu hiểu biết của người làm mô hình, mà gần như thuộc về bản chất của mô hình.</p>
 
 <hr />
 
@@ -89,8 +91,7 @@
 
 <hr />
 
-<ul>
-<li><p><strong>Trang 16 - 17</strong>: Ví dụ kinh điển dưới đây của Ian Goodfellow và các đồng nghiệp đã cho thấy sự <em>&ldquo;nghiêm trọng&rdquo;</em> của vấn đề <em>&ldquo;overfitting&rdquo;</em> trong mạng neuron như thế nào:</p>
+<p><strong>Trang 16 - 17</strong>: Ví dụ kinh điển dưới đây của Ian Goodfellow và các đồng nghiệp đã cho thấy sự <em>&ldquo;nghiêm trọng&rdquo;</em> của vấn đề <em>&ldquo;overfitting&rdquo;</em> trong mạng neuron như thế nào:</p>
 
 <p><img src="https://i.imgur.com/3wZGiYP.png" style="width:700px;"/></p>
 
@@ -104,9 +105,11 @@
 
 <p>Ảnh được lấy từ bài báo <strong><a href="https://arxiv.org/abs/1710.08864">One pixel attack for fooling deep neural networks</a></strong>.</p>
 
-<p><strong>Ngoài lề</strong>: Cũng từ những nghiên cứu về <em>&ldquo;Adversarial Examples&rdquo;</em>, Ian Goodfellow đã trở thành một trong số những người tiên phong, mở ra <em>một hướng nghiên cứu mới</em> trong Machine learning hiện đại, đó chính là <strong><a href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">Generative Adversarial Network</a></strong>.</p></li>
+<p><strong>Ngoài lề</strong>: Cũng từ những nghiên cứu về <em>&ldquo;Adversarial Examples&rdquo;</em>, Ian Goodfellow đã trở thành một trong số những người tiên phong, mở ra <em>một hướng nghiên cứu mới</em> trong Machine learning hiện đại, đó chính là <strong><a href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">Generative Adversarial Network</a></strong>.</p>
 
-<li><p><strong>Trang 18</strong>: Ảnh và ý tưởng cho phần này được lấy từ bài viết <strong><a href="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">Neural Networks, Manifolds, and Topology</a></strong> của Christopher Colah.</p>
+<hr />
+
+<p><strong>Trang 18</strong>: Ảnh và ý tưởng cho phần này được lấy từ bài viết <strong><a href="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">Neural Networks, Manifolds, and Topology</a></strong> của Christopher Colah.</p>
 
 <p>Để hiểu được vì sao <em>Deep learning</em> dễ <em>&ldquo;overfitting&rdquo;</em> như vậy, ta phải hiểu được việc huấn luyện một mạng neuron diễn ra như thế nào. Dưới đây là hai ví dụ đơn giản, giúp ta nhìn thấy (một phần) trong bức tranh tổng thể của việc huấn luyện một mạng neuron.</p>
 
@@ -124,9 +127,11 @@
 <li><p><strong>Sử dụng ở <em>&ldquo;test time&rdquo;</em></strong>: Nghĩa là vẫn huấn luyện mạng neuron bằng layer cuối là các hàm <em>logistic</em> và <em>softmax</em>, <strong>sử dụng toàn bộ representation học được</strong> cho đến trước lớp cuối cùng rồi <strong>đưa ra dự đoán bằng kNN</strong>. Cách này nhìn chung có làm giảm sai số của mô hình thêm 0.1-0.2% ở một số bộ dữ liệu, nhưng vẫn không quá đáng kể.</p></li>
 
 <li><p><strong>Sử dụng trong lúc huấn luyện</strong>: Trong cách trên, mô hình <em>&ldquo;vẫn&rdquo;</em> tối ưu mạng sao cho các tập dữ liệu <em>&ldquo;tách biệt tuyến tính&rdquo;</em>. Việc <em>&ldquo;đòi hỏi&rdquo;</em> mô hình phải làm như vậy, theo Colah, là không hợp lý lắm. Điểm khó khăn của việc sử dụng thuật toán kNN cho lớp cuối cùng là: <strong>Tính lỗi như thế nào?</strong> Nếu mỗi batch huấn luyện phải dùng toàn bộ dữ liệu, thì chi phí tính toán lại quá cao. Colah có thử nhiều kiến trúc khác nhau, trong đó cố gắng vừa hạn chế được việc phải dùng hoàn toàn bộ dữ liệu cho mỗi batch, vừa đưa ra được một cách tính sai số khả dĩ cho từng batch, nhưng.. lại không có được kết quả tốt.</p></li>
-</ul></li>
+</ul>
 
-<li><p><strong>Trang 19</strong>: Nhìn chung, có các hướng <em>regularization</em>, là tên gọi chung cho các phương pháp giảm độ <em>&ldquo;overfitting&rdquo;</em> của mô hình, được chép trong sách vở như sau:</p>
+<hr />
+
+<p><strong>Trang 19</strong>: Nhìn chung, có các hướng <em>regularization</em>, là tên gọi chung cho các phương pháp giảm độ <em>&ldquo;overfitting&rdquo;</em> của mô hình, được chép trong sách vở như sau:</p>
 
 <ol>
 <li><p>Sử dụng <strong>mô hình đơn giản hơn</strong>. (Thanks Captain Obvious!)</p></li>
@@ -138,9 +143,11 @@
 <p>Phương pháp <strong>Dropouts</strong> có cách hoạt động như sau: Với mỗi một neuron ở một lớp có <strong>Dropouts</strong>, sẽ có một xác xuất <code>$ p $</code> cho việc &ldquo;drop&rdquo; đi neuron đó trong lần huấn luyện hiện tại, ie. đặt <em>&ldquo;trọng số&rdquo;</em> (<em>weight</em>) của neuron đó bằng 0, còn khi đưa ra dự đoán (<em>&ldquo;inference phrase&rdquo;</em>) thì sẽ sử dụng mạng được huấn luyện hoàn chỉnh (không có <em>Dropouts</em>).</p>
 
 <p>Ý nghĩa của phương pháp này là: Với mỗi đợt huấn luyện, mô hình được học sẽ &ldquo;như&rdquo; một mạng neuron &ldquo;mới&rdquo;, và mô hình cuối cùng sẽ tương đương với việc <strong>&ldquo;ensemble&rdquo; vô số mạng neuron khác nhau</strong>, với một niềm tin <em>có cơ sở</em> là chúng sẽ cho kết quả tốt hơn. Mặt khác, việc &ldquo;làm khó&rdquo; quá trình huấn luyện, bằng cách ngẫu nhiên đặt các hệ số bằng 0, cũng phần nào ép mạng neuron không dựa vào một nhóm nhỏ các neuron cụ thể nào, dẫn đến việc mạng neuron <strong>khái quát hoá tốt hơn</strong>, với các neuron <strong>mang lại nhiều thông tin hơn</strong>, lại tránh được các vấn đề kỹ thuật như <em><a href="https://www.bioinf.jku.at/publications/older/ch7.pdf">exploding/vanishing gradients</a></em>.</p></li>
-</ol></li>
+</ol>
 
-<li><p><strong>Trang 20</strong>: Ngoài các phương pháp như trên thì còn có một số kỹ thuật <em>Regularization</em> khác, liên quan đến việc chỉnh sửa dữ liệu đầu vào, đặc biệt là trong <em>Computer Vision</em>:</p>
+<hr />
+
+<p><strong>Trang 20</strong>: Ngoài các phương pháp như trên thì còn có một số kỹ thuật <em>Regularization</em> khác, liên quan đến việc chỉnh sửa dữ liệu đầu vào, đặc biệt là trong <em>Computer Vision</em>:</p>
 
 <ul>
 <li><p><strong>Data augmentation</strong>: Phương pháp này đơn giản là <em>&ldquo;sửa&rdquo;</em> dữ liệu đi một chút, như việc áp thêm nhiễu vào ảnh, được trình bày trong bài báo của Ian Goodfellow, đã nhắc đến bên trên. Điểm mấu chốt là làm sao &ldquo;sửa&rdquo; được dữ liệu, mà không thay đổi đi ý nghĩa của nó quá nhiều:</p>
@@ -164,17 +171,21 @@
 </ul>
 
 <p><em>&ldquo;Test time augmentation&rdquo;</em> trong <em>Computer Vision</em> tương ứng với phương pháp <em>&ldquo;Beam search&rdquo;</em> với số bước là 1 (chỉ <em>ensemble</em> <code>$ k $</code> lựa chọn có khả năng tốt nhất ở bước đầu tiên).</p></li>
-</ul></li>
+</ul>
 
-<li><p><strong>Trang 21 - 23</strong>: Lại trở về với cuộc thi của <a href="numer.ai">numer.ai</a>.</p>
+<hr />
+
+<p><strong>Trang 21 - 23</strong>: Lại trở về với cuộc thi của <a href="numer.ai">numer.ai</a>.</p>
 
 <p>Nói một chút về việc sử dụng <em>Regularization</em> trong mô hình <em>Deep learning</em> của mình ở cuộc thi của <a href="numer.ai">numer.ai</a>. Các phương pháp như <em>L1/L2 regularizations</em>, <em>Dropouts</em> nhìn chung hoạt động tốt, trong khi những phương pháp đòi hỏi việc thêm <em>&ldquo;nhiễu&rdquo;</em> vào dữ liệu thì lại không hoạt động tốt. Điều này thật ra cũng.. dễ hiểu, bởi bản thân dữ liệu đã được áp thêm một lớp mã hoá, và bản thân của dữ liệu được trích từ thị trường chứng khoán, vốn đã nhiều nhiễu hơn là tín hiệu, thì việc thêm vào một lớp nhiễu nữa là <em>hại nhiều hơn lợi</em>.</p>
 
 <p>Nghĩ lại về các phương pháp <em>Regularization</em> hiện tại thì thấy: Phần lớn các phương pháp <em>augmentation</em> trong <em>Regularization</em> thường tìm cách thêm <em>&ldquo;nhiễu&rdquo;</em> vào hoặc là dữ liệu đầu vào (như <em>Data augmentation</em>), hoặc thêm nhiễu vào dự đoán (như <em>Test-time augmentation</em>). Hay như trong <em>Reinforcement learning</em>, một phần quan trọng của thuật toán <em>(Deep) Q-learning</em> là thêm <em>&ldquo;nhiễu&rdquo;</em> vào hành động, tức lớp cuối cùng của mô hình.</p>
 
-<p>Một ý tưởng tự nhiên đến là: <strong>Thêm nhiễu vào mô hình</strong>, thay vì các lớp đầu và cuối, mà cụ thể ở đây là trọng số của các neuron trong mạng neuron. Ý tưởng này đem đến cho mình một trong những mô hình tốt nhất khi dự cuộc thi của <a href="numer.ai">numer.ai</a>, đó là sử dụng một mạng <em>&ldquo;shallow&rdquo;</em> với <strong>2 lớp ẩn</strong>, và <em>&ldquo;thô thiển&rdquo;</em> <strong>thêm nhiễu dạng Gaussian vào các trọng số của neuron</strong>.</p></li>
+<p>Một ý tưởng tự nhiên đến là: <strong>Thêm nhiễu vào mô hình</strong>, thay vì các lớp đầu và cuối, mà cụ thể ở đây là trọng số của các neuron trong mạng neuron. Ý tưởng này đem đến cho mình một trong những mô hình tốt nhất khi dự cuộc thi của <a href="numer.ai">numer.ai</a>, đó là sử dụng một mạng <em>&ldquo;shallow&rdquo;</em> với <strong>2 lớp ẩn</strong>, và <em>&ldquo;thô thiển&rdquo;</em> <strong>thêm nhiễu dạng Gaussian vào các trọng số của neuron</strong>.</p>
 
-<li><p><strong>Trang 24 - 26</strong>:</p>
+<hr />
+
+<p><strong>Trang 24 - 26</strong>:</p>
 
 <p><details>
 <summary> [← Bấm vào đây] Có một chứng minh toán học khá đẹp đẽ cho sự hiệu quả của phương pháp này&hellip;</summary></p>
@@ -185,7 +196,7 @@
 
 <p>Khoảng một năm sau lúc mình sử dụng kỹ thuật đó trong cuộc thi của <a href="numer.ai">numer.ai</a> thì <em><a href="https://openai.com/">OpenAI</a></em> có công bố một <a href="https://arxiv.org/abs/1706.01905">bài báo</a> chi tiết hơn về kỹ thuật này, với nhiều tìm kiếm rất thú vị!</p>
 
-<p>Thay vì thêm <em>&ldquo;nhiễu&rdquo;</em> một cách &ldquo;thô thiển&rdquo; với biên độ bằng nhau ở các lớp, <em><a href="https://openai.com/">OpenAI</a></em> đề xuất một phương pháp thêm <em>&ldquo;nhiễu&rdquo;</em> khá thú vị, mà cũng rất tự nhiên: Ở các lớp đầu tiên thì biên độ của <em>&ldquo;nhiễu&rdquo;</em> được thêm vào mạnh hơn, và biên độ <em>&ldquo;nhiễu&rdquo;</em> sẽ giảm dần theo độ sâu của mạng. Sự thay đổi về biên độ này xuất phát từ việc: Ở một mạng neuron đủ <em>&ldquo;sâu&rdquo;</em>, các lớp khác nhau sẽ có sự <em>&ldquo;nhạy cảm&rdquo;</em> khác nhau với cùng một biên độ <em>&ldquo;nhiễu&rdquo;</em>. Không chỉ thế, <em><a href="https://openai.com/">OpenAI</a></em> cũng đề xuất một phương pháp để từ sai số của mô hình mà có thể tinh chỉnh nhiễu ở từng lớp cho phù hợp.</p>
+<p>Thay vì thêm <em>&ldquo;nhiễu&rdquo;</em> một cách <em>&ldquo;thô thiển&rdquo;</em> với biên độ bằng nhau ở các lớp, <em><a href="https://openai.com/">OpenAI</a></em> đề xuất một phương pháp thêm <em>&ldquo;nhiễu&rdquo;</em> khá thú vị, mà cũng rất tự nhiên: Ở các lớp đầu tiên thì biên độ của <em>&ldquo;nhiễu&rdquo;</em> được thêm vào mạnh hơn, và biên độ <em>&ldquo;nhiễu&rdquo;</em> sẽ giảm dần theo độ sâu của mạng. Sự thay đổi về biên độ này xuất phát từ việc: Ở một mạng neuron đủ <em>&ldquo;sâu&rdquo;</em>, các lớp khác nhau sẽ có sự <em>&ldquo;nhạy cảm&rdquo;</em> khác nhau với cùng một biên độ <em>&ldquo;nhiễu&rdquo;</em>. Không chỉ thế, <em><a href="https://openai.com/">OpenAI</a></em> cũng đề xuất một cơ chế phức tạp, để từ <em>&ldquo;sai số&rdquo;</em> của mô hình mà có thể tinh chỉnh <em>&ldquo;nhiễu&rdquo;</em> ở từng lớp sao cho <em>&ldquo;phù hợp&rdquo;</em>.</p>
 
 <p>Video <a href="https://www.youtube.com/watch?v=DW1AuOC9TQc">này</a> có cho thấy sự khác biệt rõ rệt của việc sử dụng phương pháp này, đặc biệt là trong môi trường <a href="https://gym.openai.com/envs/Walker2d-v2/">Walker2D</a>:</p>
 
@@ -193,9 +204,11 @@
 <li><p><em>&ldquo;Agent&rdquo;</em> khi không sử dụng phương pháp thì cố gắng tiến về phía trước <em>&ldquo;bằng mọi giá&rdquo;</em>, mà không quan tâm đến <em>&ldquo;ý nghĩa&rdquo;</em> của hành động của mình, khi dùng phần <em>&ldquo;đầu&rdquo;</em> và <em>&ldquo;chi trước&rdquo;</em> để di chuyển về phía trước.</p></li>
 
 <li><p>Còn khi được huấn luyện với phương pháp này, <em>&ldquo;agent&rdquo;</em> có hướng tiếp cận &ldquo;hợp lý&rdquo; hơn, cụ thể là bằng việc di chuyển bằng cả hai <em>&ldquo;chi&rdquo;</em> mà không sử dụng phần <em>&ldquo;đầu&rdquo;</em>, và hiệu quả hơn. <em>&ldquo;Agent&rdquo;</em> cũng học được cách <em>&ldquo;búng chân&rdquo;</em>, để có thể di chuyển nhanh hơn về phía trước.</p></li>
-</ul></li>
+</ul>
 
-<li><p><strong>Trang 27 - 29</strong>:</p>
+<hr />
+
+<p><strong>Trang 27 - 29</strong>:</p>
 
 <p>Dĩ nhiên là <em><a href="https://openai.com/">OpenAI</a></em> cũng không chứng minh được, một cách chặt chẽ về mặt toán học, vì sao phương pháp này lại hiệu quả hơn. Nói một cách vĩ mô thì <em>&ldquo;landscape&rdquo;</em> hiện tại của <em>Deep learning</em> không được xây dựng vững chãi bằng các lý thuyết toán học đồ sộ. Ta không chắc rằng một mô hình <em>Deep learning</em> mà ta đang huấn luyện sẽ cho kết quả <em>&ldquo;tối ưu&rdquo;</em> (<em>global optima</em>), <em>&ldquo;đủ tốt&rdquo;</em>, hay có sai số bao nhiêu với các kết quả <em>&ldquo;tối ưu&rdquo;/&ldquo;đủ tốt&rdquo;</em>.</p>
 
@@ -205,8 +218,7 @@
 
 <p><strong>What a time to be alive!</strong></p>
 
-<p>Cảm ơn mọi người đã lắng nghe.</p></li>
-</ul>
+<p>Cảm ơn mọi người đã lắng nghe.</p>
 
 </main>
 
