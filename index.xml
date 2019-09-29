@@ -20,7 +20,7 @@
       <description>Đây là nội dung bài talk của mình trong buổi meetup Trà đá 2^2, 25/08/2018, slide.
 Xem phần trước tại đây.
 Trang 14: Cuối cùng thì một Deep Neural Networks (DNN) là gì?
-Về mặt bản chất toán học thì các (Feed-forward) DNN nói chung thực ra rất &amp;ldquo;đơn giản&amp;rdquo;: Chúng là hàm hợp của một số các hàm &amp;ldquo;cơ bản&amp;rdquo; khác &amp;ldquo;xếp chồng&amp;rdquo; lên nhau. Các hàm đó có thể đơn giản như hàm identity $ f(x) = x $, hàm linear $ f(x) = ax + b $, hàm ReLU $ f(x) = max(x, 0) $, hoặc phức tạp một chút như hàm $ tanh(x) $, hay hàm sigmoid $ f(x) = \frac{e^x}{1 + e^x} $.</description>
+Về mặt bản chất toán học thì các (Feed-forward) DNN nói chung thực ra rất &amp;ldquo;đơn giản&amp;rdquo;: Chúng là hàm hợp của một số các hàm &amp;ldquo;cơ bản&amp;rdquo; khác, như hàm identity $ f(x) = x $, hàm linear $ f(x) = ax + b $, hàm ReLU $ f(x) = max(x, 0) $, hoặc phức tạp một chút như hàm $ tanh(x) $, hay hàm sigmoid $ f(x) = \frac{e^x}{1 + e^x} $.</description>
     </item>
     
     <item>
